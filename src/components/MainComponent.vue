@@ -15,7 +15,21 @@ export default{
 <template>
 
     <main>
-        MAIN
+        
+        <select class="select-card border-1 rounded-1" name="card" id="card">
+            <option value="card">
+                Alien
+            </option>
+        </select>
+
+        <div class="container-card">
+            <div class="row">
+                <div class="col">
+
+
+                </div>
+            </div>
+        </div>
     </main>
 
 </template>
@@ -23,8 +37,13 @@ export default{
 <style lang="scss" scoped>
 
 main{
-    padding:40px;
-    text-align: center;
+     background-color: #D48F38;
+     padding: 40px 80px;
+
+     .select-card{
+       border: none;
+       width: 100px;
+     }
 }
 
 </style>

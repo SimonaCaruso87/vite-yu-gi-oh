@@ -1,6 +1,13 @@
 <script>
+// importazione componente charactercard
+import CharacterCard from './CharacterCard.vue';
+
+
 export default{
     name: "MainComponent",
+    components :{
+      CharacterCard
+    },
     data(){
         return{
 
@@ -22,14 +29,8 @@ export default{
             </option>
         </select>
 
-        <div class="container-card">
-            <div class="row">
-                <div class="col">
+        <CharacterCard />
 
-
-                </div>
-            </div>
-        </div>
     </main>
 
 </template>

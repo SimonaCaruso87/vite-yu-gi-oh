@@ -4,7 +4,6 @@
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
-import CharacterCard from './components/CharacterCard.vue';
 import axios from 'axios' ;
 // poi possiamo inizializzare il nostro componente
 export default{
@@ -15,7 +14,6 @@ export default{
      HeaderComponent ,
      MainComponent ,
      FooterComponent ,
-     CharacterCard
   },
   data(){
     // per richiamare un api dentro vue dobbiamo dichiarare un array di oggetti vuota
@@ -44,8 +42,6 @@ export default{
 <HeaderComponent />
 
 <MainComponent />
-
-<CharacterCard />
 
 <FooterComponent />
 

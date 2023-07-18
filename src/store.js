@@ -4,5 +4,6 @@ import { reactive } from 'vue';
 export const store = reactive({
     // in questo caso specifico creiamo un array vuoto
     cardsArray: [],
-
+    typeArray: [],
+    selectType: [] ,
 });

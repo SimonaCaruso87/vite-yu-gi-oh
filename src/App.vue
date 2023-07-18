@@ -3,10 +3,11 @@
 // dobbiamo prima importarli dal percorso al file preciso
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
-import FooterComponent from './components/FooterComponent.vue';
 // inserirlo tra graffe per distrutturare l'oggetto
 import { store } from './store.js';
 import axios from 'axios' ;
+
+
 // poi possiamo inizializzare il nostro componente
 export default{
     //l'aggiunta del name è opzionale
@@ -15,7 +16,6 @@ export default{
   components:{
      HeaderComponent ,
      MainComponent ,
-     FooterComponent ,
   },
   data(){
     // per richiamare un api dentro vue dobbiamo dichiarare un array di oggetti vuota
@@ -25,6 +25,18 @@ export default{
     }
   },
   methods:{
+    // creiamo una funziona per chiamare un api , dall'evento selectType
+    filterSelect(){
+        // copiare quidentro chiamata ad api dentro created
+        axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0` , {
+            params:{
+                archetype: this.store.selectType
+            }
+        })
+        .then(response => {
+            this.store.cardsArray = response.data.data
+        })
+    }
 
   },
   
@@ -34,8 +46,16 @@ export default{
         .then(response => {
             // dopo il this ci richiamo lo store con la chiave creata in store.js
             this.store.cardsArray = response.data.data
-            console.log(this.store.cardsArray);
         })
+    // altra chiamata ad axios
+        axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
+            .then(response => {
+                // dopo il this ci richiamo lo store con la chiave creata in store.js
+                // questa api restituisce solo un data quindi response.data
+                this.store.typeArray = response.data
+                // console.log(this.store.typeArray);
+        })
+
     }
 
 }
@@ -45,10 +65,8 @@ export default{
 <template>
 
 <HeaderComponent />
-
-<MainComponent />
-
-<FooterComponent />
+<!-- per intercettare un evento dal main chiamarla con il nome creato -->
+<MainComponent @selectType="filterSelect()" />
 
 
 </template>

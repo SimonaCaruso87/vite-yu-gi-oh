@@ -1,6 +1,8 @@
 <script>
 // importazione componente charactercard
 import CharacterCard from './CharacterCard.vue';
+// importiamo lo store per creare ciclo array per riempire le cards
+import { store } from '../store.js';
 
 
 export default{
@@ -10,7 +12,8 @@ export default{
     },
     data(){
         return{
-
+            // cos' ci ritorna lo store
+          store
         }
     },
     methods:{
@@ -28,8 +31,12 @@ export default{
                 Alien
             </option>
         </select>
-
-        <CharacterCard />
+         <!-- dentro charactercard ci importiamo i dati dell'array cos' grazie a store -->
+         <!-- singleCard inventato tra parentesi con il suo indice -->
+         <!-- store.cardsArray vai in store e prendi l'array creata -->
+         <!-- key ci aiuta a prendere l'index -->
+        <CharacterCard v-for="(singleCard, index) in store.cardsArray" :key="index"/>
+        {{ store.cardsArray }};
 
     </main>
 

@@ -4,6 +4,8 @@
 import HeaderComponent from './components/HeaderComponent.vue';
 import MainComponent from './components/MainComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+// inserirlo tra graffe per distrutturare l'oggetto
+import { store } from './store.js';
 import axios from 'axios' ;
 // poi possiamo inizializzare il nostro componente
 export default{
@@ -18,7 +20,8 @@ export default{
   data(){
     // per richiamare un api dentro vue dobbiamo dichiarare un array di oggetti vuota
     return{
-        arrayYuGiOh : []
+        // inseriamo tutto lo store che abbiamo creato in store
+        store
     }
   },
   methods:{
@@ -29,7 +32,9 @@ export default{
   //per effettuare una chiamata ajax all'API di Yu Gi Oh dobbiamo inserire questa sintassi
         axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
         .then(response => {
-            this.arrayYuGiOh = response.data.data
+            // dopo il this ci richiamo lo store con la chiave creata in store.js
+            this.store.cardsArray = response.data.data
+            console.log(this.store.cardsArray);
         })
     }
 

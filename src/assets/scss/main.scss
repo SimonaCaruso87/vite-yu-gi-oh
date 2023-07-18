@@ -1,0 +1,14 @@
+@use "partials/variables" as*;
+@use "partials/mixins" as *;
+
+main {
+    color: $main-color
+}
+
+p {
+    @include main-coloring;
+}
+
+ul {
+    border: 1px solid $main-color;
+}
